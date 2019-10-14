@@ -4,7 +4,9 @@
   "description": "Test with phaser and typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack --watch & live-server --port8085"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/pontusstjerna/phaser-typescript-test/issues"
   },
-  "homepage": "https://github.com/pontusstjerna/phaser-typescript-test#readme"
+  "homepage": "https://github.com/pontusstjerna/phaser-typescript-test#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "phaser": "^3.20.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9"
+  }
 }

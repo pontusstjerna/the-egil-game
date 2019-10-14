@@ -1,0 +1,23 @@
+{
+  "name": "phaser-typescript-test",
+  "version": "1.0.0",
+  "description": "Test with phaser and typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontusstjerna/phaser-typescript-test.git"
+  },
+  "keywords": [
+    "typescript",
+    "phaser"
+  ],
+  "author": "Pontus Drejer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pontusstjerna/phaser-typescript-test/issues"
+  },
+  "homepage": "https://github.com/pontusstjerna/phaser-typescript-test#readme"
+}

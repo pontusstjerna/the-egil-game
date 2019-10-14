@@ -1,3 +1,4 @@
 push_to_git
 node_modules
 dist
+git_push

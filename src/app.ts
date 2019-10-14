@@ -1,7 +1,8 @@
 import 'phaser';
+import { Types } from 'phaser';
 import StarfallGame from './StarfallGame';
 
-const config: GameConfig = {
+const config: Types.Core.GameConfig = {
     title: 'Shitfall',
     width: 800,
     height: 600,

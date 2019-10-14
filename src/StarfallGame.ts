@@ -1,7 +1,7 @@
-import { Game } from 'phaser';
+import { Game, Types } from 'phaser';
 
 class StarfallGame extends Game {
-    constructor(config: GameConfig) {
+    constructor(config: Types.Core.GameConfig) {
         super(config);
     }
 

@@ -66,12 +66,14 @@ class GameScene extends Phaser.Scene {
         star.setDisplaySize(50,50);
         star.setVelocity(Math.Between(-10,10), Math.Between(25, 250));
         star.setInteractive();
+        star.setAngularVelocity(Math.Between(-90, 90));
         star.on('pointerdown', () => this.onClick(star), this);
         this.physics.add.collider(star, this.sand, () => this.onFall(star), null, this);
     }
 
     private onFall = (star: Phaser.Physics.Arcade.Image): void => {
         star.setVelocity(0,0);
+        star.setAngularVelocity(0);
         star.setTint(0xff0000);
 
         this.gameOver = true

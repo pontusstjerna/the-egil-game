@@ -42,7 +42,7 @@ class GameScene extends Phaser.Scene {
 
         this.sand.refresh();
 
-        this.info = this.add.text(10, 10, '', { font: '24px Arial Bold', fill: '#FBFBAC' });
+        this.info = this.add.text(10, 10, 'Bajsenkorva', { font: '24px Arial Bold', fill: '#FBFBAC' });
     }
 
     // is called every tick and contains the dynamic part of the scene — everything that moves, flashes, etc.

@@ -58,25 +58,31 @@ class GameScene extends Phaser.Scene {
     }
 
     private emitStar(): void {
-        /*var star: Phaser.Physics.Arcade.Image;
-        var x = Phaser.Math.Between(25, 775);
-        var y = 26;
-        star = this.physics.add.image(x, y, "star");
-        star.setDisplaySize(50, 50);
-        star.setVelocity(0, 200);
-        star.setInteractive();
-        star.on('pointerdown', this.onClick(star), this);
-        this.physics.add.collider(star, this.sand,
-            this.onFall(star), null, this);*/
-
         const x = Math.Between(25, 755);
         const y = 26;
         const star: Phaser.Physics.Arcade.Image = this.physics.add.image(x, y, 'star');
         star.setDisplaySize(50,50);
-        star.setVelocity(Math.Between(0, 10), Math.Between(25, 250));
+        star.setVelocity(Math.Between(-10,10), Math.Between(25, 250));
         star.setInteractive();
-        this.physics.add.collider(star, this.sand, null, null, this);
+        star.on('pointerdown', () => this.onClick(star), this);
+        this.physics.add.collider(star, this.sand, () => this.onFall(star), null, this);
     }
+
+    private onFall = (star: Phaser.Physics.Arcade.Image): void => {
+        star.setVelocity(0,0);
+        star.setTint(0xff0000);
+        this.starsFallen++;
+        this.time.delayedCall(500, star => star.destroy(), [star], this);
+    };
+
+    private onClick = (star: Phaser.Physics.Arcade.Image): void => {
+        star.setTint(0x44ff44);
+        star.setVelocity(200, -200);
+        this.starsCaught++;
+        this.time.delayedCall(500, star => star.destroy(), [star], this);
+    };
+
+
 }
 
 export default GameScene;

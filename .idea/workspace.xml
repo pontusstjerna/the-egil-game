@@ -53,7 +53,7 @@
           <entry key="gitignore" value="15" />
           <entry key="html" value="54" />
           <entry key="json" value="120" />
-          <entry key="ts" value="1164" />
+          <entry key="ts" value="2002" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -61,7 +61,7 @@
           <entry key="HTML" value="54" />
           <entry key="JSON" value="75" />
           <entry key="PLAIN_TEXT" value="45" />
-          <entry key="TypeScript" value="1164" />
+          <entry key="TypeScript" value="2002" />
           <entry key="tsconfig" value="45" />
         </counts>
       </usages-collector>
@@ -89,8 +89,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameScene.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+            <state relative-caret-position="90">
+              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -292,12 +295,12 @@
       <workItem from="1571118851387" duration="4445000" />
       <workItem from="1571211762250" duration="2188000" />
       <workItem from="1571292745449" duration="1718000" />
-      <workItem from="1571379286900" duration="2401000" />
+      <workItem from="1571379286900" duration="3775000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16644000" />
+    <option name="totallyTimeSpent" value="18018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -418,8 +421,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameScene.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        <state relative-caret-position="90">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

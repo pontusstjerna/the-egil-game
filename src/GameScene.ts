@@ -1,11 +1,12 @@
 import 'phaser';
+import { Math } from 'phaser';
 
 class GameScene extends Phaser.Scene {
 
-    delta: number;
-    lastStarTime: number;
-    starsCaught: number;
-    starsFallen: number;
+    starTimer: number = 0;
+    starInterval: number = 1000;
+    starsCaught: number = 0;
+    starsFallen: number = 0;
     sand: Phaser.Physics.Arcade.StaticGroup;
     info: Phaser.GameObjects.Text;
 
@@ -46,8 +47,35 @@ class GameScene extends Phaser.Scene {
     }
 
     // is called every tick and contains the dynamic part of the scene — everything that moves, flashes, etc.
-    update(time): void {
-        // TODO
+    update(time, delta): void {
+        this.starTimer += delta;
+
+        if (this.starTimer > this.starInterval) {
+            this.emitStar();
+            this.starTimer = 0;
+        }
+        this.info.text = `${this.starsCaught} caught - ${this.starsFallen} fallen (max 3)`
+    }
+
+    private emitStar(): void {
+        /*var star: Phaser.Physics.Arcade.Image;
+        var x = Phaser.Math.Between(25, 775);
+        var y = 26;
+        star = this.physics.add.image(x, y, "star");
+        star.setDisplaySize(50, 50);
+        star.setVelocity(0, 200);
+        star.setInteractive();
+        star.on('pointerdown', this.onClick(star), this);
+        this.physics.add.collider(star, this.sand,
+            this.onFall(star), null, this);*/
+
+        const x = Math.Between(25, 755);
+        const y = 26;
+        const star: Phaser.Physics.Arcade.Image = this.physics.add.image(x, y, 'star');
+        star.setDisplaySize(50,50);
+        star.setVelocity(Math.Between(0, 10), Math.Between(25, 250));
+        star.setInteractive();
+        this.physics.add.collider(star, this.sand, null, null, this);
     }
 }
 

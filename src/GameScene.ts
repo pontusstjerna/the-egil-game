@@ -6,9 +6,10 @@ class GameScene extends Phaser.Scene {
     starTimer: number = 0;
     starInterval: number = 1000;
     starsCaught: number = 0;
-    starsFallen: number = 0;
     sand: Phaser.Physics.Arcade.StaticGroup;
     info: Phaser.GameObjects.Text;
+
+    gameOver: boolean = false
 
     constructor() {
         super({ key: "GameScene" });
@@ -43,18 +44,19 @@ class GameScene extends Phaser.Scene {
 
         this.sand.refresh();
 
-        this.info = this.add.text(10, 10, 'Bajsenkorva', { font: '24px Arial Bold', fill: '#FBFBAC' });
+        this.info = this.add.text(10, 10, '', { font: '24px Arial Bold', fill: '#FBFBAC' });
     }
 
     // is called every tick and contains the dynamic part of the scene — everything that moves, flashes, etc.
     update(time, delta): void {
         this.starTimer += delta;
 
-        if (this.starTimer > this.starInterval) {
+        if (this.starTimer > this.starInterval && !this.gameOver) {
             this.emitStar();
             this.starTimer = 0;
+            this.starInterval -= 10
         }
-        this.info.text = `${this.starsCaught} caught - ${this.starsFallen} fallen (max 3)`
+        this.info.text = `Level: ${this.starsCaught}`
     }
 
     private emitStar(): void {
@@ -71,13 +73,13 @@ class GameScene extends Phaser.Scene {
     private onFall = (star: Phaser.Physics.Arcade.Image): void => {
         star.setVelocity(0,0);
         star.setTint(0xff0000);
-        this.starsFallen++;
-        this.time.delayedCall(500, star => star.destroy(), [star], this);
+
+        this.gameOver = true
     };
 
     private onClick = (star: Phaser.Physics.Arcade.Image): void => {
         star.setTint(0x44ff44);
-        star.setVelocity(200, -200);
+        star.setVelocity(Math.Between(-500, 500), -500);
         this.starsCaught++;
         this.time.delayedCall(500, star => star.destroy(), [star], this);
     };

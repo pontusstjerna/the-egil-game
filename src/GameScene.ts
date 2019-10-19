@@ -1,11 +1,17 @@
 import 'phaser';
 import { Math } from 'phaser';
 import Doodle from "./Doodle";
+import Egil from "./Egil";
 
 class GameScene extends Phaser.Scene {
 
     spawnTimer: number = 0;
     spawnInterval: number = 1000;
+
+    egil: Egil;
+    doodles: Doodle[] = [];
+    lowestDoodle: Doodle;
+
     starsCaught: number = 0;
     sand: Phaser.Physics.Arcade.StaticGroup;
     info: Phaser.GameObjects.Text;
@@ -29,13 +35,14 @@ class GameScene extends Phaser.Scene {
         this.load.image('doodle1', 'assets/doodle1.png');
         this.load.image('doodle2', 'assets/doodle2.png');
         this.load.image('doodle3', 'assets/doodle3.png');
-        this.load.image('sand', 'assets/sand.jpg');
+        this.load.image('egil_body', 'assets/egil_body.png');
     }
 
     // is called when the assets are loaded and usually contains creation of the main game objects
     // (background, player, obstacles, enemies, etc.)
     create(): void {
-        this.sand = this.physics.add.staticGroup({
+        /*this.sand = this.physics.add.staticGroup({
+
             key: 'sand',
             frameQuantity: 20
         });
@@ -45,7 +52,9 @@ class GameScene extends Phaser.Scene {
             new Phaser.Geom.Line(20, 580, 820, 580)
         );
 
-        this.sand.refresh();
+        this.sand.refresh();*/
+
+        this.egil = new Egil(300, 500, this.physics);
 
         this.info = this.add.text(10, 10, '', { font: '24px Arial Bold', fill: '#FBFBAC' });
     }
@@ -59,13 +68,24 @@ class GameScene extends Phaser.Scene {
             this.spawnTimer = 0;
             //this.spawnInterval -= 10
         }
+
         this.info.text = `Level: ${this.starsCaught}`
+
+        const lowestDoodle = this.doodles.sort((a,b) => a.image.body.y > b.image.body.y ? -1 : 1)[0];
+        if (lowestDoodle !== this.lowestDoodle && !!lowestDoodle) {
+            this.egil.update(lowestDoodle);
+            this.lowestDoodle = lowestDoodle;
+        }
     }
 
     private emitDoodle(): void {
         const x = Math.Between(25, 755);
         const y = 50;
-        new Doodle().emit(x, y, this.physics);
+        const doodle = new Doodle();
+        doodle.emit(x, y, this.physics);
+
+        this.physics.add.collider(doodle.image, this.egil.bodyImage, () => this.hit(doodle));
+        this.doodles.push(doodle);
     }
 
     private onFall = (star: Phaser.Physics.Arcade.Image): void => {
@@ -76,14 +96,11 @@ class GameScene extends Phaser.Scene {
         this.gameOver = true
     };
 
-    private onClick = (star: Phaser.Physics.Arcade.Image): void => {
-        star.setTint(0x44ff44);
-        star.setVelocity(Math.Between(-500, 500), -500);
-        this.starsCaught++;
-        this.time.delayedCall(500, star => star.destroy(), [star], this);
-    };
-
-
+    private hit(doodle: Doodle): void {
+        this.egil.hit();
+        doodle.hit();
+        this.doodles = this.doodles.filter(d => !d.isHit);
+    }
 }
 
 export default GameScene;

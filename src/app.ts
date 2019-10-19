@@ -1,6 +1,6 @@
 import 'phaser';
 import { Types } from 'phaser';
-import StarfallGame from './StarfallGame';
+import EgilGame from './EgilGame';
 import GameScene from "./GameScene";
 
 const config: Types.Core.GameConfig = {
@@ -18,4 +18,4 @@ const config: Types.Core.GameConfig = {
     },
 };
 
-window.onload = () => new StarfallGame(config);
+window.onload = () => new EgilGame(config);

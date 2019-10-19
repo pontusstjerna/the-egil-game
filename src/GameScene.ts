@@ -27,6 +27,8 @@ class GameScene extends Phaser.Scene {
     preload(): void {
         this.load.setBaseURL('/');
         this.load.image('doodle1', 'assets/doodle1.png');
+        this.load.image('doodle2', 'assets/doodle2.png');
+        this.load.image('doodle3', 'assets/doodle3.png');
         this.load.image('sand', 'assets/sand.jpg');
     }
 

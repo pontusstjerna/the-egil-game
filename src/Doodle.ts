@@ -1,8 +1,10 @@
 import 'phaser';
 import { Physics, Math } from 'phaser';
 
-const assets: [string] = [
+const assets: string[] = [
     'doodle1',
+    'doodle2',
+    'doodle3',
 ];
 
 class Doodle {
